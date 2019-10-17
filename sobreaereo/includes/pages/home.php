@@ -86,7 +86,7 @@
                         $link = $p["link"];
                         $preco = $p["preco"];
 
-                        require('includes/elements/card-produto.php');
+                        include('includes/elements/card-produto.php');
                     }
                 ?>
             </div>
