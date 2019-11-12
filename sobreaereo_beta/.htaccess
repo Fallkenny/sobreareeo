@@ -1,0 +1,14 @@
+#Caseinsensitive On 
+#DirectoryIndex index.html index.htm index.shtml index.phtml default.htm Default.htm index.php3 index.php4 index.php5 index.php default.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^([a-z0-9-]+)?$ index.php?param1=$1 [NC,L]
+RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)?$ index.php?param1=$1&param2=$2 [NC,L]
+RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)?$ index.php?param1=$1&param2=$2&param3=$3 [NC,L]
+RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)?$ index.php?param1=$1&param2=$2&param3=$3&param4=$4 [NC,L]
+
+</IfModule>
