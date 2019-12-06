@@ -3,25 +3,25 @@ session_start();
 include('conexao.php');
 
 if(empty($_POST['userEmail']) || empty($_POST['userLoginPassword'])) {
-	header('Location: sobreaereo/index.php');
+	header('Location: ../index.php');
 	exit();
 }
 
 $usuario = mysqli_real_escape_string($conexao, $_POST['userEmail']);
 $senha = mysqli_real_escape_string($conexao, $_POST['userLoginPassword']);
 
-$query = "select usuario from usuario where usuario = '{$usuario}' and senha = md5('{$senha}')";
-echo $query;
+$query = "select username from login where username = '{$usuario}' and password = md5('{$senha}')";
+
 $result = mysqli_query($conexao, $query);
 
 $row = mysqli_num_rows($result);
 
 if($row == 1) {
 	$_SESSION['userEmail'] = $usuario;
-	header('Location: painel.php');
+	header('Location: ../includes/pages/cart.php');#apenas direcionando pra outro lugar como um teste
 	exit();
 } else {
 	$_SESSION['nao_autenticado'] = true;
-	header('Location: index.php');
+	header('Location: ../index.php');
 	exit();
 }
