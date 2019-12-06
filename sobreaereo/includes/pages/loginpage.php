@@ -10,7 +10,7 @@
 
 
     <div class="container">
-        <form action="" class="formLogin">            
+        <form action="../../../classes/login.php" class="formLogin" method="POST">            
                 <div class="formLoginMain">
 
                     <label class="formLogin-item">

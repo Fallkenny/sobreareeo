@@ -53,7 +53,7 @@
 					<button type="submit" class="busca__btn" title="Buscar!"> <i class="fas fa-search"></i> </button>
 				</form>
 
-				<a href="login" class="menu-item menu-login">
+				<a href="loginpage" class="menu-item menu-login">
 					<i class="fas fa-user"></i>
 					<span class="menu-item__texto">Entrar</span>
 				</a>
