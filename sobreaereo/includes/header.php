@@ -1,5 +1,10 @@
+<?php 
+session_start();
+// print_r($_SESSION);
+?>
+
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#" class="loading">
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
 <head>
 
 	<title>SobreAéreo</title>
@@ -15,32 +20,18 @@
 	<meta name="description" content="SobreAéreo">
 	<meta name="theme-color" content="#ccff00">
 
-
-	<!-- fontes: google ou https://transfonter.org/ (gera os @import)-->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" /> -->
+
 	<link rel="stylesheet" href="css/slick.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link href="img/favicon.png" rel="shortcut icon" type="image/x-icon" />
 
-
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script> -->
 
 </head>
 <body>
-	<div class="loader" tabindex="-1">
-		<img src="img/loader.gif" alt="Carregando...">
-	</div>
-	<script>
-		window.addEventListener('load', function(){
-			$('.loader').fadeOut("slow", function(){
-				$('html').removeClass('loading');
-			})
-		});
-	</script>
-
+	
 	<header class="header">
 		<div class="container">
 			<nav class='flexmenu'>
@@ -53,25 +44,45 @@
 					<button type="submit" class="busca__btn" title="Buscar!"> <i class="fas fa-search"></i> </button>
 				</form>
 
-				<a href="loginpage" class="menu-item menu-login">
-					<i class="fas fa-user"></i>
-					<span class="menu-item__texto">Entrar</span>
-				</a>
+				<?php if (!isset($_SESSION['autenticado'])) {?>
+					<!-- <?php // if ($_SESSION['autenticado']) { ?> -->
+						<a href="loginpage" class="menu-item menu-login">
+							<i class="fas fa-user"></i>
+							<span class="menu-item__texto">Entrar</span>
+						</a>
+					<?php } else { ?>
+					<a href="classes/logout.php" class="menu-item menu-login">
+						<i class="fas fa-sign-out-alt"></i>
+						<span class="menu-item__texto">Sair</span>
+					</a>
+				<?php } ?>
 				
-				<a href="cart" class="menu-item menu-cart">
-					<i class="fas fa-shopping-cart"></i>
-					<span class="menu-item__texto">Carrinho</span>
-				</a>
 			</nav>
-			<div class="floatingBtns">
-				<a href="cadastro-vendedores" class="menu-item menu-login">
-					<i class="fas fa-store"></i>
-					<span class="menu-item__texto">Cadastro de vendedores</span>
-				</a>
-				<a href="cadastro-produtos" class="menu-item menu-login">
-					<i class="fas fa-boxes"></i>
-					<span class="menu-item__texto">Cadastro de produtos</span>
-				</a>
-			</div>
+			
+			<?php 
+			if (isset($_SESSION['autenticado']) ) {
+				if ($_SESSION['autenticado']) {?>
+					<div class="floatingBtns">
+
+						<?php if ($_SESSION['userType'] == 'A') {?>
+							<a href="lista-vendedores" class="menu-item menu-login">
+								<i class="fas fa-store"></i>
+								<span class="menu-item__texto">Listagem de vendedores</span>
+							</a>
+						<?php } else if ($_SESSION['userType'] == 'V') { ?>
+							<a href="lista-produtos" class="menu-item menu-login">
+								<i class="fas fa-boxes"></i>
+								<span class="menu-item__texto">Listagem de produtos</span>
+							</a>
+						<?php } else if ($_SESSION['userType'] == 'C') { ?>
+							<a href="lista-produtos" class="menu-item menu-login">
+								<i class="fas fa-shopping-cart"></i>
+								<span class="menu-item__texto">Meu carrinho</span>
+							</a>
+						<?php } ?>
+
+					</div>
+				<?php } 
+			} ?>
 		</div>
 	</header>

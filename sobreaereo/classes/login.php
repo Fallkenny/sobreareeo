@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include('conexao.php');
 
@@ -10,18 +11,39 @@ if(empty($_POST['userEmail']) || empty($_POST['userLoginPassword'])) {
 $usuario = mysqli_real_escape_string($conexao, $_POST['userEmail']);
 $senha = mysqli_real_escape_string($conexao, $_POST['userLoginPassword']);
 
-$query = "select username from login where username = '{$usuario}' and password = md5('{$senha}')";
-
+$query = "select * from login where username = '{$usuario}' and password = md5('{$senha}')";
 $result = mysqli_query($conexao, $query);
-
 $row = mysqli_num_rows($result);
+
+$data = mysqli_fetch_assoc($result);
+
+// var_dump($data);
+// die();
 
 if($row == 1) {
 	$_SESSION['userEmail'] = $usuario;
-	header('Location: ../includes/pages/cart.php');#apenas direcionando pra outro lugar como um teste
+	$_SESSION['userType'] = $data['user_type'];
+	$_SESSION['autenticado'] = true;
+
+
+	// admin
+	if ($data['user_type'] == 'A') {
+		header('Location: ../lista-vendedores');
+	}
+
+	// vendedor
+	if ($data['user_type'] == 'V') {
+		header('Location: ../lista-produtos');
+	}
+
+	// cliente
+	if ($data['user_type'] == 'C') {
+		header('Location: ../cart');
+	}
+
 	exit();
 } else {
-	$_SESSION['nao_autenticado'] = true;
-	header('Location: ../index.php');
+	$_SESSION['autenticado'] = false;
+	header('Location: ../');
 	exit();
 }

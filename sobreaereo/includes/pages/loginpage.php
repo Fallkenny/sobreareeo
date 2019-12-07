@@ -10,23 +10,23 @@
 
 
     <div class="container">
-        <form action="../../sobreaereo/classes/login" class="formLogin" method="POST">            
-                <div class="formLoginMain">
+        <form action="classes/login.php" class="formLogin" method="POST">            
+            <div class="formLoginMain">
 
-                    <label class="formLogin-item">
-                        <span class="formLogin-item__label">E-mail</span>
-                        <input type="text" name="userEmail" placeholder="cliente@sobreaereo.com"class="formLogin-item__campo" required>
-                    </label>
-                    <label class="formLogin-item">
-                        <span class="formLogin-item__label">Sua Senha</span>
-                        <input type="password" name="userLoginPassword" class="formLogin-item__campo" required>
-                    </label>
-                    
-                    <div class="formLogin__btn-wrapper">
-                        <button type="submit" class="btn btn-success btn-login"><i class="fas fa-check"></i>&nbsp;&nbsp;Login</button>
-                    </div>
+                <label class="formLogin-item">
+                    <span class="formLogin-item__label">E-mail</span>
+                    <input type="text" name="userEmail" placeholder="cliente@sobreaereo.com"class="formLogin-item__campo" required>
+                </label>
+                <label class="formLogin-item">
+                    <span class="formLogin-item__label">Sua Senha</span>
+                    <input type="password" name="userLoginPassword" class="formLogin-item__campo" required>
+                </label>
+                
+                <div class="formLogin__btn-wrapper">
+                    <button type="submit" class="btn btn-success btn-login"><i class="fas fa-check"></i>&nbsp;&nbsp;Login</button>
                 </div>
-                <div class="criar-cadastro"><a href="./">Criar cadastro</a></div>
+            </div>
+            <div class="criar-cadastro"><a href="./">Criar cadastro</a></div>
             
         </form>
     </div>
