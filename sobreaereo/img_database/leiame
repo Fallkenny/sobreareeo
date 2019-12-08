@@ -1,0 +1,7 @@
+Nesta pasta vão ficar os arquivos das imagens dos produtos
+Um produto no banco tem uma coluna pra imagem principal (informando o nome da imagem dentro desta pasta)
+
+As demais imagens do produto só fazer um SELECT imagem_nome FROM imagem_produto where produto_id = {id do produto};
+
+Podemos fazer uma estrutura do tipo:
+../img_database/vendedor1/produtoimagem1

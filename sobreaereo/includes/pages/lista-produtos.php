@@ -2,6 +2,9 @@
     <section class="topoPadrao">
         <div class="container topo-cadastros">
             <h1 class="titulo3">Listagem de produtos</h1>
+            <a href="cadastro-produtos">
+                <button class="btn btn-primary">+</button>
+            </a>
             <form action="galeria" name="pesquisa-produtos" class="busca">
                 <input type="text" class="busca__campo" placeholder="Pesquisar" required>
                 <button type="submit" class="busca__btn" title="Buscar!"> <i class="fas fa-search"></i> </button>

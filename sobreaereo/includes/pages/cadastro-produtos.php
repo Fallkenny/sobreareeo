@@ -10,7 +10,7 @@
 
     <section class="cadastro">
         <div class="container">
-            <form action="" class="formCadastro">
+            <form action="classes/actionCadastraProduto.php" class="formCadastro" method="POST">
                 <div class="secaoForm">
                     <h2 class="secaoForm__titulo">Informações do Produto</h2>
                     <!-- <div class="formCadastro-imagem">                        
