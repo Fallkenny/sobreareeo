@@ -7,28 +7,30 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
     private $table_name = 'produto';
     
-    public function insere($produto) {
+/*
+$query = "select * from login where username = '{$usuario}' and password = md5('{$senha}')";
+$result = mysqli_query($conexao, $query);
+$row = mysqli_num_rows($result);
+ */
+
+    public function insere($produto) 
+    {
+        $descricao = mysqli_real_escape_string($this->conn,  $produto->getDescricao());
+        $categoria= mysqli_real_escape_string($this->conn,  $produto->getCategoria());
+        $marca= mysqli_real_escape_string($this->conn,  $produto->getMarca());
+        $preco= mysqli_real_escape_string($this->conn,  $produto->getPreco());
+        $detalhes= mysqli_real_escape_string($this->conn,  $produto->getDetalhes());
+        $imagens= mysqli_real_escape_string($this->conn,  $produto->getImagens());
 
         $query = "INSERT INTO " . $this->table_name . 
-        " (login, senha, nome) VALUES" .
-        " (:login, :senha, :nome)";
+        " (descricao, categoria, marca, preco, detalhes,imagens) VALUES ('{$descricao}','{$categoria}','{$marca}','{$preco}', '{$detalhes}', '{$imagens}')";
 
-        $stmt = $this->conn->prepare($query);
-
-        // bind values 
-        $stmt->bindParam(":login", $produto->getLogin());
-        $stmt->bindParam(":senha", md5($produto->getSenha()));
-        $stmt->bindParam(":nome", $produto->getNome());
-
-        if($stmt->execute()){
-            return true;
-        }else{
-            return false;
-        }
+        $result = mysqli_query($this->conn, $query);
 
     }
 
-    public function removePorId($id) {
+    public function removePorId($id) 
+    {
         $query = "DELETE FROM " . $this->table_name . 
         " WHERE id = :id";
 
@@ -46,7 +48,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
     }
 
     public function remove($produto) {
-        return removePorId($produto->getId());
+        //return removePorId($produto->getId());
     }
 
     public function altera(&$produto) {
@@ -90,7 +92,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
      
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $produto = new Produto($row['id'],$row['login'], $row['senha'], $row['nome']);
+          //  $produto = new Produto($row['id'],$row['login'], $row['senha'], $row['nome']);
         } 
      
         return $produto;
@@ -115,7 +117,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
      
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $produto = new Produto($row['id'],$row['login'], $row['senha'], $row['nome']);
+        //    $produto = new Produto($row['id'],$row['login'], $row['senha'], $row['nome']);
         } 
      
         return $produto;

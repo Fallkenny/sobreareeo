@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-include('conexao.php');
-
+//include('conexao.php');
+include('../dao/MySqlDaoFactory.php');
 if(empty($_POST['userEmail']) || empty($_POST['userLoginPassword'])) {
 	header('Location: ../index.php');
 	exit();

@@ -1,8 +1,9 @@
 <?php
 
 session_start();
-include('conexao.php');
-
+//include('conexao.php');
+include('model/Produto.php');
+include('../dao/MySqlDaoFactory.php');
 if(empty($_POST['descricao-produto'])) {
 	header('Location: cadastro-produtos.php');
 	exit();
@@ -17,12 +18,10 @@ $imagens=   $_POST['foto1'];
 
 $vendedor = $_SESSION['userEmail'];
 
-$produto = new Produto(null, $descricao, $categoria, $marca,$preco, $detalhes, $imagens );
-
+$produto = new Produto(null, $descricao, $categoria, $marca,$preco, $detalhes, null );
+$factory = new MySqlDaoFactory();
 $dao = $factory->getProdutoDao();
-$dao->insere($usuario);
-
-$query = "insert into produto * from login where username = '{$usuario}' and password = md5('{$senha}')";
+$dao->insere($produto);
 
 $result = mysqli_query($conexao, $query);
 $row = mysqli_num_rows($result);
