@@ -14,8 +14,8 @@ class MySqlDaoFactory extends DaoFactory
   
     public function getConnection()
     {
-        $conexao =null;
         $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB);
+        
         // or die ('Não foi possível conectar');
         //why dont u wanna die?
         if (mysqli_connect_error()) {

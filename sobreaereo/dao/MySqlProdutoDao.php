@@ -1,18 +1,12 @@
 <?php
 /////////////////////falta ajustar
 include_once('ProdutoDao.php');
-include_once('MySqlDao.php');
-
-class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
+include_once('MySQLDAO.php');
+include_once('MySqlDaoFactory.php');
+class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
 
     private $table_name = 'produto';
     
-/*
-$query = "select * from login where username = '{$usuario}' and password = md5('{$senha}')";
-$result = mysqli_query($conexao, $query);
-$row = mysqli_num_rows($result);
- */
-
     public function insere($produto) 
     {
         $descricao = mysqli_real_escape_string($this->conn,  $produto->getDescricao());
