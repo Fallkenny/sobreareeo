@@ -17,7 +17,7 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
         $imagens= mysqli_real_escape_string($this->conn,  $produto->getImagens());
 
         $query = "INSERT INTO " . $this->table_name . 
-        " (descricao, categoria, marca, preco, detalhes,imagens) VALUES ('{$descricao}','{$categoria}','{$marca}','{$preco}', '{$detalhes}', '{$imagens}')";
+        " (descricao, categoria, marca, preco, detalhes,imagem_main) VALUES ('{$descricao}','{$categoria}','{$marca}','{$preco}', '{$detalhes}', '{$imagens}')";
 
         $result = mysqli_query($this->conn, $query);
 

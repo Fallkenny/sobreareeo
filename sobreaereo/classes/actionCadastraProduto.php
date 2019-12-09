@@ -23,10 +23,5 @@ $factory = new MySqlDaoFactory();
 $dao = $factory->getProdutoDao();
 $dao->insere($produto);
 
-$result = mysqli_query($conexao, $query);
-$row = mysqli_num_rows($result);
-
-$data = mysqli_fetch_assoc($result);
-
 // var_dump($data);
 // die();

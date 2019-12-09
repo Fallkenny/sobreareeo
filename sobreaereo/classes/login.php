@@ -7,7 +7,8 @@ if(empty($_POST['userEmail']) || empty($_POST['userLoginPassword'])) {
 	header('Location: ../index.php');
 	exit();
 }
-
+$factory = new MySqlDaoFactory();
+$conexao = $factory->getConnection();
 $usuario = mysqli_real_escape_string($conexao, $_POST['userEmail']);
 $senha = mysqli_real_escape_string($conexao, $_POST['userLoginPassword']);
 
