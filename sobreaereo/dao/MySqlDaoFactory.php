@@ -2,6 +2,7 @@
 
 include_once('DaoFactory.php');
 include_once('MySqlProdutoDao.php');
+include_once('MySqlVendedorDao.php');
 
 define('HOST', 'localhost');
 define('USUARIO', 'root');
@@ -23,8 +24,13 @@ class MySqlDaoFactory extends DaoFactory
     }
 
     public function getProdutoDao()
-     {
+    {
         return new MySqlProdutoDao($this->getConnection());
+    }
+    
+    public function getVendedorDao()
+    {
+        return new MySqlVendedorDao($this->getConnection());
     }
 }
 ?>

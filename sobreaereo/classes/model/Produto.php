@@ -9,9 +9,10 @@ class Produto {
     private $preco;
     private $detalhes;
     private $imagens;
+    private $vendedor;
 
 
-    public function __construct( $id, $descricao, $categoria, $marca, $preco, $detalhes,$imagens)
+    public function __construct( $id, $descricao, $categoria, $marca, $preco, $vendedor,$detalhes,$imagens)
     {
         $this->id=$id;
         $this->descricao=$descricao;
@@ -20,6 +21,7 @@ class Produto {
         $this->preco=$preco;
         $this->detalhes=$detalhes;
         $this->imagens=$imagens;        
+        $this->vendedor=$vendedor;        
     }
   
     /**
@@ -158,6 +160,26 @@ class Produto {
     public function setImagens($imagens)
     {
         $this->imagens = $imagens;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of vendedor
+     */ 
+    public function getVendedor()
+    {
+        return $this->vendedor;
+    }
+
+    /**
+     * Set the value of vendedor
+     *
+     * @return  self
+     */ 
+    public function setVendedor($vendedor)
+    {
+        $this->vendedor = $vendedor;
 
         return $this;
     }

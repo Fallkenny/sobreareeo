@@ -24,6 +24,7 @@ $data = mysqli_fetch_assoc($result);
 if($row == 1) {
 	$_SESSION['userEmail'] = $usuario;
 	$_SESSION['userType'] = $data['user_type'];
+	$_SESSION['user_ID'] = $data['login_id'];
 	$_SESSION['autenticado'] = true;
 
 

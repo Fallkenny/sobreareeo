@@ -12,7 +12,7 @@
 
     <section class="cadastro">
         <div class="container">
-            <form action="" class="formCadastro">
+            <form action="classes/actionCadastraVendedor.php" class="formCadastro" method="POST">
                 <div class="secaoForm">
                     <h2 class="secaoForm__titulo">Seus dados</h2>
                     <label class="formCadastro-item">
@@ -53,7 +53,7 @@
                     </label>
                     <label class="formCadastro-item">
                         <span class="formCadastro-item__label">Seu telefone</span>
-                        <input type="text" name="telefone" class="formCadastro-item__campo" required>
+                        <input type="text" name="telefone_loja" class="formCadastro-item__campo" required>
                     </label>
 
                     <label class="formCadastro-item">
