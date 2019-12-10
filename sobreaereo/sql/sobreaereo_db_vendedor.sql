@@ -18,26 +18,39 @@ USE `sobreaereo_db`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `imagem_produto`
+-- Table structure for table `vendedor`
 --
 
-DROP TABLE IF EXISTS `imagem_produto`;
+DROP TABLE IF EXISTS `vendedor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `imagem_produto` (
-  `imagem_id` int(11) NOT NULL,
-  `produto_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`imagem_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE `vendedor` (
+  `vendedor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `cpf` varchar(45) DEFAULT NULL,
+  `fone` varchar(45) DEFAULT NULL,
+  `lojaNome` varchar(45) DEFAULT NULL,
+  `lojaRazaoSocial` varchar(45) DEFAULT NULL,
+  `lojaEmail` varchar(45) DEFAULT NULL,
+  `lojaCnpj` varchar(45) DEFAULT NULL,
+  `lojaFone` varchar(45) DEFAULT NULL,
+  `cep` varchar(45) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  `cidade` varchar(45) DEFAULT NULL,
+  `rua` varchar(45) DEFAULT NULL,
+  `nroComplemento` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`vendedor_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `imagem_produto`
+-- Dumping data for table `vendedor`
 --
 
-LOCK TABLES `imagem_produto` WRITE;
-/*!40000 ALTER TABLE `imagem_produto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `imagem_produto` ENABLE KEYS */;
+LOCK TABLES `vendedor` WRITE;
+/*!40000 ALTER TABLE `vendedor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vendedor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

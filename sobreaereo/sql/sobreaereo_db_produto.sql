@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sobreaereo_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `sobreaereo_db`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sobreaereo_db
@@ -32,7 +34,7 @@ CREATE TABLE `produto` (
   `vendedor_id` int(11) DEFAULT NULL,
   `imagem_main` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`produto_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-08 16:43:11
+-- Dump completed on 2019-12-09 23:24:47
