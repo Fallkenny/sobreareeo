@@ -1,5 +1,24 @@
 <?php
 
+function getGUID(){
+    if (function_exists('com_create_guid')){
+        return com_create_guid();
+    }
+    else {
+        mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+        $charid = strtoupper(md5(uniqid(rand(), true)));
+        $hyphen = chr(45);// "-"
+        $uuid = chr(123)// "{"
+            .substr($charid, 0, 8).$hyphen
+            .substr($charid, 8, 4).$hyphen
+            .substr($charid,12, 4).$hyphen
+            .substr($charid,16, 4).$hyphen
+            .substr($charid,20,12)
+            .chr(125);// "}"
+        return $uuid;
+    }
+}
+
 function uploadImage($receivedKey)
 {
 	$target_dir = "../img_database/";
@@ -7,7 +26,8 @@ function uploadImage($receivedKey)
 
 	$extension = pathinfo($_FILES["fotos"]["name"][$receivedKey], PATHINFO_EXTENSION); 
 
-	$mainImageGuid = trim(com_create_guid(), '{}');
+	$mainImageGuid = trim(getGUID(), '{}');
+	// $mainImageGuid = trim(com_create_guid(), '{}');
 
 	 $_FILES["fotos"]["name"][$receivedKey] = $mainImageGuid   ."." . $extension;
 
@@ -47,15 +67,15 @@ function uploadImage($receivedKey)
 session_start();
 
 
-include('model/Produto.php');
-include('../dao/MySqlDaoFactory.php');
+include_once('model/Produto.php');
+include_once('../dao/MySqlDaoFactory.php');
 
 
-if(empty($_POST['descricao-produto'])) 
-{
-	header('Location: ../includes/pages/cadastro-produtos.php');
-	exit();
-}
+// if(empty($_POST['descricao-produto'])) 
+// {
+// 	header('Location: ../includes/pages/cadastro-produtos.php');
+// 	exit();
+// }
 
 $descricao =$_POST['descricao-produto'];
 
