@@ -79,7 +79,7 @@ include_once('../dao/MySqlDaoFactory.php');
 
 $descricao =$_POST['descricao-produto'];
 
-echo $descricao;
+//echo $descricao;
 
 $categoria =$_POST['categoria-produto'];
 $marca = $_POST['marca'];
@@ -93,6 +93,7 @@ foreach($_FILES['fotos']['name'] as $key=>$val)
 {
 	//echo $fileName = basename($_FILES['fotos']['name'][$key]);
 	$guid = uploadImage($key);
+	
 	array_push($guids, $guid);
 	if($settedFirst == false)
 	{
@@ -118,7 +119,7 @@ $productNextID = mysqli_fetch_assoc($result)['AUTO_INCREMENT'];
 $produto = new Produto($productNextID, $descricao, $categoria, $marca,$preco,$vendedor, $detalhes, $mainImageGuid );
 $dao = $factory->getProdutoDao();
 $rsultado = $dao->insere($produto);
-
+echo $rsultado;
 
 
 if($rsultado)
@@ -127,10 +128,10 @@ if($rsultado)
 	{
 		$_id = mysqli_real_escape_string($factory->getConnection(),  $id);
 		$_prodId = mysqli_real_escape_string($factory->getConnection(),  $productNextID);
-		// echo $_id;
-		// echo '             ';
-		// echo $_prodId;
-		// echo '             ';
+		 echo $_id;
+		 echo '             ';
+		 echo $_prodId;
+		 echo '             ';
 		$query = "INSERT INTO ".'imagem_produto'. "(imagem_id, produto_id) VALUES ('{$_id}', '{$_prodId}')";
 		mysqli_query( $factory->getConnection(), $query);	
 

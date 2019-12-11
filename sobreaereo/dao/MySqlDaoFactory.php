@@ -4,10 +4,20 @@ include_once('DaoFactory.php');
 include_once('MySqlProdutoDao.php');
 include_once('MySqlVendedorDao.php');
 
-// define('HOST', 'localhost');
-// define('USUARIO', 'root'); // fischer
-define('HOST', '127.0.0.1');
-define('USUARIO', 'admin');
+$fischer = false;
+
+if($fischer)
+{
+     define('HOST', 'localhost');
+     define('USUARIO', 'root'); // fischer
+
+}
+else
+{
+    define('HOST', '127.0.0.1');
+    define('USUARIO', 'admin');
+}
+
 define('SENHA', '');
 define('DB', 'sobreaereo_db');
 class MySqlDaoFactory extends DaoFactory 

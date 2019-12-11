@@ -1,3 +1,17 @@
+<?php 
+if (!isset($_SESSION['autenticado']) || !$_SESSION['autenticado']) {
+    header("Location: loginpage");
+    die();
+}
+
+include('dao/MySqlVendedorDao.php');
+
+$factory = new MySqlDaoFactory();
+$dao = $factory->getVendedorDao();
+$vendedores = $dao->getTodosVendedores();
+
+?>
+
 <main>
     <section class="topoPadrao">
         <div class="container topo-cadastros">
@@ -14,283 +28,27 @@
 
     <section class="listagem-cadastros">
         <div class="container">
+
+            <?php if ($vendedores) { ?>
             <table class="tabela-resultados">
                 <thead>
                     <th>id</th>
                     <th>Nome fantasia</th>
                     <th>Razão social</th>
                     <th>E-mail</th>
-                    <th>Data de entrada</th>
+                    <!-- <th>Data de entrada</th> -->
                     <th>Ações</th>
                 </thead>
                 <tbody>
-                    <?php 
-                    
-                    $vendedores = [
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000001",
-                            "nome_fantasia" => "Franco El Primo",
-                            "razao_social" => "Ferrari Representacoes Ltda",
-                            "email" => "oi@francoelprimo.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000002",
-                            "nome_fantasia" => "Ciano Livros",
-                            "razao_social" => "Ciano Comércio de Livros Ltda",
-                            "email" => "contato@ciano.com.br",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000003",
-                            "nome_fantasia" => "Sutjeska Books",
-                            "razao_social" => "Sutjeska Livros S/A",
-                            "email" => "hello@sutjeska.com",
-                            "entrada" => "20/09/2019"
-                        ],
-                        [
-                            "id" => "000004",
-                            "nome_fantasia" => "Barley Shop",
-                            "razao_social" => "Barley Ind e Com Ltda",
-                            "email" => "hi@barleyshop.com",
-                            "entrada" => "20/09/2019"
-                        ]
-
-                        ];
-                    
-                    
+                    <?php                    
                     
                     foreach($vendedores as $v) { ?>
                         <tr>
-                            <td><?= $v["id"]?></td>
-                            <td><?= $v["nome_fantasia"]?></td>
-                            <td><?= $v["razao_social"]?></td>
-                            <td><?= $v["email"]?></td>
-                            <td><?= $v["entrada"]?></td>
+                            <td><?= $v["vendedor_id"]?></td>
+                            <td><?= $v["lojaNome"]?></td>
+                            <td><?= $v["lojaRazaoSocial"]?></td>
+                            <td><?= $v["lojaEmail"]?></td>
+                            <!-- <td><?= $v["entrada"]?></td> -->
                             <td>
                                 <a class="btnCadastro btn btn-danger" href="lista-vendedores"><i class="fas fa-trash"></i></a>
                                 <a class="btnCadastro btn btn-primary" href="cadastro-vendedores"><i class="fas fa-edit"></i></a>
@@ -302,6 +60,12 @@
                     <?php } ?>
                 </tbody>
             </table>
+
+            <?php } else { ?>
+                <p>Não há produtos cadastrados!</p>
+            
+            <?php } ?>
+
 
             <div class="paginacao">
                 <button class="paginacao-seta paginacao-prev disabled"><i class="fas fa-chevron-left"></i></button>

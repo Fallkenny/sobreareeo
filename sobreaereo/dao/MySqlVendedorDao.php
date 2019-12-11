@@ -33,6 +33,23 @@ class MySqlVendedorDao extends MySQLDAO implements VendedorDao {
         echo $result;
     }
 
+    public function getTodosVendedores()
+    {
+        $query = "SELECT * FROM vendedor";
+        $result = mysqli_query($this->conn, $query);
+        $arr = null;
+        
+        if ($result) {
+            $arr = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($arr, $row);
+            }
+            mysqli_free_result($result);
+        }
+    
+        return $arr;
+    }
+
     public function removePorId($id) 
     {
         $query = "DELETE FROM " . $this->table_name . 
