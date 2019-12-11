@@ -84,7 +84,7 @@ $descricao =$_POST['descricao-produto'];
 $categoria =$_POST['categoria-produto'];
 $marca = $_POST['marca'];
 $preco = $_POST['preco'];
-$detalhes = $_POST['preco'];
+$detalhes = $_POST['detalhes'];
 
 $settedFirst = false;
 $mainImageGuid = "";

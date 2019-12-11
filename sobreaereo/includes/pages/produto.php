@@ -7,14 +7,21 @@
     $produto_id = $_GET["param2"];
 
     $produto = $dao->buscaPorId($produto_id);
-
-
+    
 
     $titulo = $produto['descricao'];
     $preco =  "R$ ".$produto['preco'];
     $detalhes = $produto['detalhes'];
+
+
+    $fotosArray = $dao->buscaFotos($produto_id);
+
     $fotos = array();
-    array_push ($fotos, "img_database/".$produto['imagem_main']);
+    foreach ($fotosArray as &$photo)
+    {
+        array_push ($fotos, "img_database/".$photo['imagem_id']);
+    }
+    //array_push ($fotos, "img_database/".$produto['imagem_main']);
     $vendedor = "Frank El Primo";
 
     

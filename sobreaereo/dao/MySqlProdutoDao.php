@@ -20,8 +20,10 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
         $query = "INSERT INTO " . $this->table_name . 
         " (descricao, categoria, marca, preco, detalhes,vendedor_id,imagem_main) VALUES ('{$descricao}','{$categoria}','{$marca}','{$preco}', '{$detalhes}','{$vendedor}', '{$imagens}')";
 
+        // var_dump($query);
+        // die($query);
         $result = mysqli_query($this->conn, $query);
-
+        return $result;
     }
 
 
@@ -43,11 +45,12 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
         return $arr;
     }
 
-    public function buscaFotos($produto_id) {
+    public function buscaFotos($produto_id) 
+    {
         $query = "SELECT * FROM imagem_produto WHERE produto_id =".$produto_id;
         $result = mysqli_query($this->conn, $query);
         $arr = null;
-
+        
         if ($result) {
             $arr = array();
             while ($row = mysqli_fetch_assoc($result)) {
