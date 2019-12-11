@@ -1,4 +1,5 @@
 <main>
+    
     <section class="topoPadrao">
         <div class="container topo-cadastros">
             <h1 class="titulo3">Cadastro de Produtos</h1>
@@ -13,11 +14,13 @@
             <form action="classes/actionCadastraProduto.php" class="formCadastro" enctype="multipart/form-data" method="POST">
                 <div class="secaoForm">
                     <h2 class="secaoForm__titulo">Informações do Produto</h2>
-                    <!-- <div class="formCadastro-imagem">                        
+                <!--
+                    <div class="formCadastro-imagem">                        
                         <label class="formCadastro-imagem-box">
                             <input type="file" id="file" name="img_produto" class="formCadastro-imagem-upload" required>                            
                         </label>
-                    </div> -->
+                    </div> 
+                -->
 
                     <label class="formCadastro-item">
                         <span class="formCadastro-item__label">Descrição</span>
@@ -93,12 +96,58 @@
 
                 </div>
 
+
+                <script type="text/javascript">
+                    function readURL(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                        
+                            reader.onload = function (e) {
+                                $('#blah').attr('src', e.target.result);
+                            }
+                        
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+
+                    function previewFiles(input) 
+	                {
+                    
+                        if (input.files) {
+                            var filesAmount = input.files.length;
+                        
+                            var div = document.getElementById('previewGallery');
+                                    while(div.firstChild)
+                                    {
+                                        div.removeChild(div.firstChild);
+                                    }
+
+                            for (i = 0; i < filesAmount; i++) {
+                                var reader = new FileReader();
+                            
+                                reader.onload = function(event) 
+                                {
+                                    $($.parseHTML('<img class="formCadastro-imagem-box">')).attr('src', event.target.result).appendTo('#previewGallery');
+                                }
+                            
+                                reader.readAsDataURL(input.files[i]);
+                            }
+                        }
+                    
+                    }
+                </script>
+
+
                 <div class="secaoForm" id="fotos">
                     <h2 class="secaoForm__titulo">Fotos do Produto</h2>
                     <label class="formCadastro-pic">
-                        <input type="file" name="foto1" class="formCadastro-pic__input">
+                        <input type="file" name="fotos" multiple onchange="previewFiles(this)">
+
+                        <!-- <img id="blah" src="#" alt="your image" /> -->
+                        <!-- <input type="file" name="foto1" class="formCadastro-pic__input"> -->
                     </label>
                 </div>
+                <div id="previewGallery"></div>
 
                 <div class="secaoForm">
                     <div class="formCadastro__btn-wrapper">
