@@ -60,29 +60,27 @@ session_start();
 			</nav>
 			
 			<?php 
-			if (isset($_SESSION['autenticado']) ) {
-				if ($_SESSION['autenticado']) {?>
-					<div class="floatingBtns">
+			if (isset($_SESSION['autenticado']) && $_SESSION['autenticado']) {?>
+				<div class="floatingBtns">
 
-						<?php if ($_SESSION['userType'] == 'A') {?>
-							<a href="cadastro-vendedores" class="menu-item menu-login">
-								<i class="fas fa-store"></i>
-								<span class="menu-item__texto">Cdaastrar vendedores</span>
-							</a>
-						<?php } else if ($_SESSION['userType'] == 'V') { ?>
-							<a href="cadastro-produtos" class="menu-item menu-login">
-								<i class="fas fa-boxes"></i>
-								<span class="menu-item__texto">Cdaastrar produtos</span>
-							</a>
-						<?php } else if ($_SESSION['userType'] == 'C') { ?>
-							<a href="cart" class="menu-item menu-login">
-								<i class="fas fa-shopping-cart"></i>
-								<span class="menu-item__texto">Meu carrinho</span>
-							</a>
-						<?php } ?>
+					<?php if ($_SESSION['userType'] == 'A') {?>
+						<a href="cadastro-vendedores" class="menu-item menu-login">
+							<i class="fas fa-store"></i>
+							<span class="menu-item__texto">Cadastrar vendedores</span>
+						</a>
+					<?php } else if ($_SESSION['userType'] == 'V') { ?>
+						<a href="cadastro-produtos" class="menu-item menu-login">
+							<i class="fas fa-boxes"></i>
+							<span class="menu-item__texto">Cadastrar produtos</span>
+						</a>
+					<?php } else if ($_SESSION['userType'] == 'C') { ?>
+						<a href="cart" class="menu-item menu-login">
+							<i class="fas fa-shopping-cart"></i>
+							<span class="menu-item__texto">Meu carrinho</span>
+						</a>
+					<?php } ?>
 
-					</div>
-				<?php } 
-			} ?>
+				</div>
+			<?php } ?>
 		</div>
 	</header>

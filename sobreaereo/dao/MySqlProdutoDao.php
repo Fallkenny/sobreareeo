@@ -21,9 +21,31 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
         " (descricao, categoria, marca, preco, detalhes,vendedor_id,imagem_main) VALUES ('{$descricao}','{$categoria}','{$marca}','{$preco}', '{$detalhes}','{$vendedor}', '{$imagens}')";
 
         $result = mysqli_query($this->conn, $query);
-        return $result;
+
     }
 
+
+
+    public function buscaPorVendedor($vendedor_id) {
+        $produto = null;
+        $produtos = null;
+        $query = "SELECT * FROM produto WHERE vendedor_id =".$vendedor_id;
+     
+        $result = mysqli_query($this->conn, $query);
+
+        $data = mysqli_fetch_assoc($result);
+        
+        if($data) {
+            $produtos = array();
+            foreach ($data as $d) {
+                $produto = new Produto($d['id'], $d['descricao '], $d['categoria'], $d['marca'], $d['preco'], $d['vendedor'], $d['detalhes'], $d['imagens'] );
+                array_push($produtos, $produto);
+            }
+        } 
+        return $produtos;
+    }
+
+    // TODO: daqui pra baixo
     public function removePorId($id) 
     {
         $query = "DELETE FROM " . $this->table_name . 
@@ -117,6 +139,7 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
      
         return $produto;
     }
+
 
 }
 ?>
