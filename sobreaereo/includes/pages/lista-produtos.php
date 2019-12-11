@@ -47,7 +47,7 @@ $produtos = $dao->buscaPorVendedor($_SESSION['user_ID']);
                         foreach($produtos as $p) { ?>
                             <tr>
                                 <td><?= $p['produto_id']?></td>
-                                <td><img class="produto-table-image" src="img/front/celular1.jpg"/></td> <!-- ! TODO: trocar por imagem_main -->
+                                <td><img class="produto-table-image" src="img_database/<?= $p['imagem_main']?>"/></td> <!-- ! TODO: trocar por imagem_main -->
                                 <td><?= $p['descricao']?></td>
                                 <td><?= $p['categoria']?></td>
                                 <td><?= $p['marca']?></td>

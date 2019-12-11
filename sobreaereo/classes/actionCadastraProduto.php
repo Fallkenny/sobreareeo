@@ -61,7 +61,7 @@ function uploadImage($receivedKey)
 		move_uploaded_file($_FILES["fotos"]["tmp_name"][$receivedKey],$target_file);	
 	}
 
-	return $mainImageGuid;
+	return $mainImageGuid.'.'.$extension;
 }
 
 session_start();
