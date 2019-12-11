@@ -127,7 +127,10 @@
                             
                                 reader.onload = function(event) 
                                 {
-                                    $($.parseHTML('<img class="formCadastro-imagem-box">')).attr('src', event.target.result).appendTo('#previewGallery');
+                                    
+                                    $($.parseHTML('<div class="formCadastro-imagem">'))
+                                        .append($ ($.parseHTML('<img >') ).attr('src', event.target.result))
+                                    .appendTo('#previewGallery');
                                 }
                             
                                 reader.readAsDataURL(input.files[i]);
@@ -142,11 +145,9 @@
                     <h2 class="secaoForm__titulo">Fotos do Produto</h2>
                     <label class="formCadastro-pic">
                         <input type="file" name="fotos" multiple onchange="previewFiles(this)">
-
-                        <!-- <img id="blah" src="#" alt="your image" /> -->
-                        <!-- <input type="file" name="foto1" class="formCadastro-pic__input"> -->
                     </label>
                 </div>
+
                 <div id="previewGallery"></div>
 
                 <div class="secaoForm">

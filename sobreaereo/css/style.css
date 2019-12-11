@@ -1060,7 +1060,7 @@ table tr:hover {
 	opacity: 0;
 }
 
-.formCadastro-imagem-box {
+/* .formCadastro-imagem-box {
     width: 10rem;
     height:10rem;
     font-size: 1em;
@@ -1082,6 +1082,29 @@ table tr:hover {
     cursor:pointer;
 }
 
+
+ */
+ #previewGallery { 
+    display: grid;
+    grid-template-columns: repeat (3, 150px);
+    gap: 16px;
+}
+    
+#previewGallery::before{
+     content: ''; width: 100%; display: block; padding-bottom: 56.25%; 
+}
+
+.formCadastro-imagem {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    object-position: center; 
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+
+    
+   }
 
 /******  End of [] Cadastro-produtos  *******/
 
