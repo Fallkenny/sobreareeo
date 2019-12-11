@@ -21,7 +21,7 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
         " (descricao, categoria, marca, preco, detalhes,vendedor_id,imagem_main) VALUES ('{$descricao}','{$categoria}','{$marca}','{$preco}', '{$detalhes}','{$vendedor}', '{$imagens}')";
 
         $result = mysqli_query($this->conn, $query);
-
+        return $result;
     }
 
     public function removePorId($id) 

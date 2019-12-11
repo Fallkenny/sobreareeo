@@ -65,17 +65,17 @@ session_start();
 					<div class="floatingBtns">
 
 						<?php if ($_SESSION['userType'] == 'A') {?>
-							<a href="lista-vendedores" class="menu-item menu-login">
+							<a href="cadastro-vendedores" class="menu-item menu-login">
 								<i class="fas fa-store"></i>
-								<span class="menu-item__texto">Listagem de vendedores</span>
+								<span class="menu-item__texto">Cdaastrar vendedores</span>
 							</a>
 						<?php } else if ($_SESSION['userType'] == 'V') { ?>
-							<a href="lista-produtos" class="menu-item menu-login">
+							<a href="cadastro-produtos" class="menu-item menu-login">
 								<i class="fas fa-boxes"></i>
-								<span class="menu-item__texto">Listagem de produtos</span>
+								<span class="menu-item__texto">Cdaastrar produtos</span>
 							</a>
 						<?php } else if ($_SESSION['userType'] == 'C') { ?>
-							<a href="lista-produtos" class="menu-item menu-login">
+							<a href="cart" class="menu-item menu-login">
 								<i class="fas fa-shopping-cart"></i>
 								<span class="menu-item__texto">Meu carrinho</span>
 							</a>

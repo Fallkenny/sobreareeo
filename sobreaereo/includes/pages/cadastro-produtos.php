@@ -98,17 +98,6 @@
 
 
                 <script type="text/javascript">
-                    function readURL(input) {
-                        if (input.files && input.files[0]) {
-                            var reader = new FileReader();
-                        
-                            reader.onload = function (e) {
-                                $('#blah').attr('src', e.target.result);
-                            }
-                        
-                            reader.readAsDataURL(input.files[0]);
-                        }
-                    }
 
                     function previewFiles(input) 
 	                {
@@ -128,8 +117,8 @@
                                 reader.onload = function(event) 
                                 {
                                     
-                                    $($.parseHTML('<div class="formCadastro-imagem">'))
-                                        .append($ ($.parseHTML('<img >') ).attr('src', event.target.result))
+                                    $($.parseHTML('<div class="formCadastro-imagem formCadastro-imagem-box">'))
+                                        .append($ ($.parseHTML('<img>') ).attr('src', event.target.result))
                                     .appendTo('#previewGallery');
                                 }
                             
@@ -144,7 +133,7 @@
                 <div class="secaoForm" id="fotos">
                     <h2 class="secaoForm__titulo">Fotos do Produto</h2>
                     <label class="formCadastro-pic">
-                        <input type="file" name="fotos" multiple onchange="previewFiles(this)">
+                        <input type="file" name="fotos[]" multiple onchange="previewFiles(this)">
                     </label>
                 </div>
 

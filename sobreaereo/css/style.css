@@ -880,6 +880,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 32px;
 }
 
 .formCadastro__btn-wrapper .btn {
@@ -1049,52 +1050,32 @@ table tr:hover {
 {
     grid-column: 1/-1;
 } 
-.formCadastro-imagem
- {
-     grid-column: 1/-1;
-     display: flex;
-     text-align: center;
- }
+
 
  .formCadastro-imagem-upload {	
 	opacity: 0;
 }
 
-/* .formCadastro-imagem-box {
-    width: 10rem;
-    height:10rem;
-    font-size: 1em;
-    font-weight: 500;
-    color: white;
-    line-height: 2.6em;
-    text-transform: uppercase;
-    text-align: center;
-    background-color: #ccff00;
-    display: inline-block;
-    border-radius: 10px;
-    box-shadow: 0px 3px 0px #3c3c3c;
-    transition: 150ms;
-}
-
-.formCadastro-imagem-box:hover {
-    background-color: #ccfe00;
-    box-shadow: 0px 5px 0px #7c7c7c;
-    cursor:pointer;
-}
-
-
- */
- #previewGallery { 
+#previewGallery { 
     display: grid;
-    grid-template-columns: repeat (3, 150px);
+    grid-template-columns: repeat(auto-fit, 200px);
+    justify-content: center;
     gap: 16px;
 }
-    
-#previewGallery::before{
-     content: ''; width: 100%; display: block; padding-bottom: 56.25%; 
+
+.formCadastro-imagem{
+    position: relative;
+    border: 1px solid #bebebe
+
+}
+.formCadastro-imagem::before{
+    content: '';
+    width: 100%; 
+    display: block;
+    padding-bottom: 56.25%; 
 }
 
-.formCadastro-imagem {
+.formCadastro-imagem img {
     width: 100%; 
     height: 100%; 
     object-fit: contain; 
@@ -1102,9 +1083,7 @@ table tr:hover {
     position: absolute; 
     left: 0; 
     top: 0; 
-
-    
-   }
+}
 
 /******  End of [] Cadastro-produtos  *******/
 
