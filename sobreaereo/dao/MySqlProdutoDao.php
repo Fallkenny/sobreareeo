@@ -21,8 +21,10 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
         " (descricao, categoria, marca, preco, detalhes,vendedor_id,imagem_main) VALUES ('{$descricao}','{$categoria}','{$marca}','{$preco}', '{$detalhes}','{$vendedor}', '{$imagens}')";
 
         $result = mysqli_query($this->conn, $query);
-        return $result;
+
     }
+
+
 
     public function buscaPorVendedor($vendedor_id) {
 
@@ -41,100 +43,64 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
         return $arr;
     }
 
-    // TODO: daqui pra baixo
-    public function removePorId($id) 
-    {
-        $query = "DELETE FROM " . $this->table_name . 
-        " WHERE id = :id";
+    public function buscaFotos($produto_id) {
+        $query = "SELECT * FROM imagem_produto WHERE produto_id =".$produto_id;
+        $result = mysqli_query($this->conn, $query);
+        $arr = null;
 
-        $stmt = $this->conn->prepare($query);
-
-        // bind parameters
-        $stmt->bindParam(':id', $id);
-
-        // execute the query
-        if($stmt->execute()){
-            return true;
-        }    
-
-        return false;
+        if ($result) {
+            $arr = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($arr, $row);
+            }
+            mysqli_free_result($result);
+        }
+    
+        return $arr;
     }
 
-    public function remove($produto) {
-        //return removePorId($produto->getId());
+    public function buscaPorId($produto_id) {
+
+        $query = "SELECT * FROM produto WHERE produto_id =".$produto_id;
+        $result = mysqli_query($this->conn, $query);
+
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            $imagens_galeria = $this->buscaFotos($produto_id);
+            if ($imagens_galeria)
+                array_push($row, $imagens_galeria);
+        }
+    
+        return $row;
+    }
+
+    public function buscaTodos($limit = false) {
+        $arr = null;
+        $query = "SELECT * FROM produto";
+        if ($limit)
+            $query = $query.' LIMIT '.$limit;
+
+        $result = mysqli_query($this->conn, $query);
+        if ($result) {
+            $arr = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($arr, $row);
+            }
+            mysqli_free_result($result);
+        }
+        return $arr;
+    }
+
+    // TODO: daqui pra baixo
+    public function remove($id) 
+    {
+        return false;
     }
 
     public function altera(&$produto) {
-
-        $query = "UPDATE " . $this->table_name . 
-        " SET login = :login, senha = :senha, nome = :nome" .
-        " WHERE id = :id";
-
-        $stmt = $this->conn->prepare($query);
-
-        // bind parameters
-        $stmt->bindParam(":login", $produto->getLogin());
-        $stmt->bindParam(":senha", md5($produto->getSenha()));
-        $stmt->bindParam(":nome", $produto->getNome());
-        $stmt->bindParam(':id', $produto->getId());
-
-        // execute the query
-        if($stmt->execute()){
-            return true;
-        }    
-
         return false;
     }
 
-    public function buscaPorId($id) {
-        
-        $produto = null;
-
-        $query = "SELECT
-                    id, login, nome, senha
-                FROM
-                    " . $this->table_name . "
-                WHERE
-                    id = ?
-                LIMIT
-                    1 OFFSET 0";
-     
-        $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $id);
-        $stmt->execute();
-     
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($row) {
-          //  $produto = new Produto($row['id'],$row['login'], $row['senha'], $row['nome']);
-        } 
-     
-        return $produto;
-    }
-
-    public function buscaPorLogin($login) {
-
-        $produto = null;
-
-        $query = "SELECT
-                    id, login, nome, senha
-                FROM
-                    " . $this->table_name . "
-                WHERE
-                    login = ?
-                LIMIT
-                    1 OFFSET 0";
-     
-        $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $login);
-        $stmt->execute();
-     
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($row) {
-        //    $produto = new Produto($row['id'],$row['login'], $row['senha'], $row['nome']);
-        } 
-     
-        return $produto;
-    }
 
 
 }

@@ -7,6 +7,7 @@ session_start();
 <html lang="en-US" prefix="og: http://ogp.me/ns#">
 <head>
 
+	<base href="http://localhost/sobreaereo/">
 	<title>SobreAéreo</title>
 
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">

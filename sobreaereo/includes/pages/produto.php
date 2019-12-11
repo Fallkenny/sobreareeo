@@ -1,8 +1,20 @@
 <?php 
-    $titulo = "iPhone X Branco";
-    $preco =  "4.599,99";
-    $fotos = array("img/front/celular2.png", "img/front/celular2-2.png", "img/front/celular2-3.png", "img/front/celular2-4.png", "img/front/celular2-5.png", "img/front/celular2-6.png");
-    $condicoes = "766,65";
+    include('dao/MySqlProdutoDao.php');
+    $factory = new MySqlDaoFactory();
+    $dao = $factory->getProdutoDao();
+    
+
+    $produto_id = $_GET["param2"];
+
+    $produto = $dao->buscaPorId($produto_id);
+
+
+
+    $titulo = $produto['descricao'];
+    $preco =  "R$ ".$produto['preco'];
+    $detalhes = $produto['detalhes'];
+    $fotos = array();
+    array_push ($fotos, "img_database/".$produto['imagem_main']);
     $vendedor = "Frank El Primo";
 
     
@@ -31,8 +43,7 @@
                 <div class="produto-detalhes">
                     <h1 class="titulo2"><?= $titulo ?></h1>
                     <p class="vendedor">Vendido e entregue por: <a href="galeria"><?= $vendedor ?></a></p>
-                    <p class="produto-detalhes__preco">R$ <?= $preco ?></p>
-                    <p class="produto-detalhes__condicoes">Em até 6x sem juros de R$ <?= $condicoes ?></p>
+                    <p class="produto-detalhes__preco"><?= $preco ?></p>
                     <p class="produto-detalhes__desconto">5% de desconto no boleto!</p>
                     <div class="botoes">
                         <a href="cart" class="btn btn2"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Adicionar ao carrinho</a>
@@ -41,18 +52,12 @@
                 </div>
             </div>
             <div class="produto-informacoes texto">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam quis accusamus libero, soluta laudantium placeat aliquam ipsam voluptate quia porro possimus autem minima architecto praesentium veritatis reprehenderit? <strong>In, esse accusantium, nulla dolor modi vero totam maxime exercitationem consequatur doloremque eaque!</strong><br/>
-                At reprehenderit iste possimus accusamus tempore eum officia sunt animi nostrum sit laudantium ad id repellendus quibusdam repudiandae, ex perferendis voluptatibus? <br/>
-                Nisi harum soluta laudantium at rem dolorem sint voluptates quibusdam enim amet pariatur, obcaecati reiciendis necessitatibus! Voluptas quaerat enim culpa, unde, tempora, a cumque fuga nihil quia aliquid recusandae provident doloribus nostrum. <br/>
-                Ea, corporis rem facere delectus rerum hic, accusantium inventore praesentium obcaecati perspiciatis tenetur. Nulla, est! Harum perspiciatis dolore ex repellat quod quo minus? Aut totam saepe aliquid consectetur fugit necessitatibus nesciunt architecto facere sunt excepturi perferendis sapiente eveniet quasi obcaecati culpa sequi corporis, voluptates quae quas recusandae expedita odio quaerat deleniti! Mollitia et eum facilis tempora harum?<br/>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur, provident? Officiis minus facilis consequatur ipsum tenetur voluptates animi necessitatibus quibusdam nisi repellat numquam, alias iusto!<br/>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem beatae eos repudiandae minima, voluptate ipsam adipisci sequi inventore quaerat deserunt itaque iure culpa expedita illo odit quibusdam ipsa nulla cumque.<br/>
-                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit!</strong>
+                <?= $detalhes?>
             </div>
         </div>
     </section>
 
-    <section class="produtos-relacionados">
+    <!-- <section class="produtos-relacionados">
         <div class="container">
             <h2 class="titulo3">As pessoas também compraram</h2>
             <div class="gridProdutos">
@@ -95,7 +100,7 @@
                 ?>
             </div>
         </div>
-    </section>
+    </section> -->
 
 </main>
 
