@@ -16,13 +16,11 @@ $vendedores = $dao->getTodosVendedores();
     <section class="topoPadrao">
         <div class="container topo-cadastros">
             <h1 class="titulo3">Listagem de vendedores</h1>
-            <a href="cadastro-vendedores">
-                <button class="btn btn-primary">+</button>
-            </a>
-            <form action="galeria" name="pesquisa-vendedores" class="busca">
+            
+            <!-- <form action="galeria" name="pesquisa-vendedores" class="busca">
                 <input type="text" class="busca__campo" placeholder="Pesquisar" required>
                 <button type="submit" class="busca__btn" title="Buscar!"> <i class="fas fa-search"></i> </button>
-            </form>
+            </form> -->
         </div>
     </section>
 
@@ -36,8 +34,6 @@ $vendedores = $dao->getTodosVendedores();
                     <th>Nome fantasia</th>
                     <th>Razão social</th>
                     <th>E-mail</th>
-                    <!-- <th>Data de entrada</th> -->
-                    <th>Ações</th>
                 </thead>
                 <tbody>
                     <?php                    
@@ -48,13 +44,6 @@ $vendedores = $dao->getTodosVendedores();
                             <td><?= $v["lojaNome"]?></td>
                             <td><?= $v["lojaRazaoSocial"]?></td>
                             <td><?= $v["lojaEmail"]?></td>
-                            <!-- <td><?= $v["entrada"]?></td> -->
-                            <td>
-                                <a class="btnCadastro btn btn-danger" href="lista-vendedores"><i class="fas fa-trash"></i></a>
-                                <a class="btnCadastro btn btn-primary" href="cadastro-vendedores"><i class="fas fa-edit"></i></a>
-                                <a class="btnCadastro btn btn-primary" href="galeria"><i class="fas fa-store"></i></a>
-                                <a class="btnCadastro btn btn-success" href="lista-vendedores"><i class="far fa-eye"></i></a>
-                            </td>
                         </tr>
 
                     <?php } ?>
@@ -62,20 +51,10 @@ $vendedores = $dao->getTodosVendedores();
             </table>
 
             <?php } else { ?>
-                <p>Não há produtos cadastrados!</p>
-            
+                <h2>Não há vendedores cadastrados!</h2>
+                <a href="cadastro-vendedores" class="btn" style="margin-top: 32px;">Cadastrar vendedores</a>
             <?php } ?>
 
-
-            <div class="paginacao">
-                <button class="paginacao-seta paginacao-prev disabled"><i class="fas fa-chevron-left"></i></button>
-                <a href="" class="paginacao-item active">1</a>
-                <a href="" class="paginacao-item">2</a>
-                <a href="" class="paginacao-item">3</a>
-                <a href="" class="paginacao-item disabled">...</a>
-                <a href="" class="paginacao-item">8</a>
-                <button class="paginacao-seta paginacao-next"><i class="fas fa-chevron-right"></i></button>
-            </div>
         </div>
     </section>
 

@@ -30,7 +30,13 @@ else{
 
     <section class="topoPadrao">
         <div class="container">
-            <h1 class="titulo3">Resultados p/ "<?php echo $searchfield?>"</h1>
+            <?php if (!empty($searchfield)) { ?>
+                <h1 class="titulo3">Resultados p/ "<?php echo $searchfield?>"</h1>
+            <?php } else { ?>
+                <h1 class="titulo3">Galeria de produtos</h1>
+            <?php } ?>
+
+
             <p class="numProdutos"><?php echo $count_produtos?> produto(s) encontrado(s)</p>
         </div>
     </section>
@@ -40,7 +46,7 @@ else{
                 <?php 
                     
                     foreach ($produtos as $p) {
-                        $foto = $p["imagem_main"];
+                        $foto = 'img_database/'.$p["imagem_main"];
                         $titulo = $p["descricao"];
                         $link = "produto/". $p["produto_id"];
                         $preco = $p["preco"];
@@ -50,15 +56,6 @@ else{
                 ?>
             </div>
 
-            <div class="paginacao">
-                <button class="paginacao-seta paginacao-prev disabled"><i class="fas fa-chevron-left"></i></button>
-                <a href="" class="paginacao-item active">1</a>
-                <a href="" class="paginacao-item">2</a>
-                <a href="" class="paginacao-item">3</a>
-                <a href="" class="paginacao-item disabled">...</a>
-                <a href="" class="paginacao-item">8</a>
-                <button class="paginacao-seta paginacao-next"><i class="fas fa-chevron-right"></i></button>
-            </div>
         </div>
     </section>
 

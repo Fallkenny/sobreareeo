@@ -40,7 +40,7 @@ if($row == 1) {
 
 	// cliente
 	if ($data['user_type'] == 'C') {
-		header('Location: ../cart');
+		header('Location: ../');
 	}
 
 	exit();

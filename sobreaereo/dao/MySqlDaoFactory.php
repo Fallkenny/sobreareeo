@@ -4,7 +4,7 @@ include_once('DaoFactory.php');
 include_once('MySqlProdutoDao.php');
 include_once('MySqlVendedorDao.php');
 
-$fischer = true;
+$fischer = false;
 
 if($fischer)
 {

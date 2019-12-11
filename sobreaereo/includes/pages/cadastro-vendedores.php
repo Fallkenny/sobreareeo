@@ -3,8 +3,6 @@
         <div class="container topo-cadastros">
             <h1 class="titulo3">Cadastro de vendedores</h1>
             <div class="btnsCadastro">
-                <a class="btnCadastro btn btn-danger" href="lista-vendedores"><i class="fas fa-trash"></i>&nbsp;&nbsp;Excluir</a>
-                <a class="btnCadastro btn btn-success" href="lista-vendedores"><i class="far fa-eye"></i>&nbsp;&nbsp;Vendedor Ativo</a>
                 <a class="btnCadastro btn btn-primary" href="lista-vendedores"><i class="fas fa-list"></i>&nbsp;&nbsp;Ver todos</a>
             </div>
         </div>

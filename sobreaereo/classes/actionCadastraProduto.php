@@ -107,13 +107,10 @@ $vendedor = $_SESSION['user_ID'];
 
 $factory = new MySqlDaoFactory();
 
-
 $nextIdQuery = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = 'produto'";
 
 
-
 $result = mysqli_query( $factory->getConnection(), $nextIdQuery);
-
 $productNextID = mysqli_fetch_assoc($result)['AUTO_INCREMENT'];
 
 $produto = new Produto($productNextID, $descricao, $categoria, $marca,$preco,$vendedor, $detalhes, $mainImageGuid );

@@ -53,8 +53,12 @@
                     <p class="produto-detalhes__preco"><?= $preco ?></p>
                     <p class="produto-detalhes__desconto">5% de desconto no boleto!</p>
                     <div class="botoes">
-                        <a href="cart" class="btn btn2"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Adicionar ao carrinho</a>
-                        <a href="checkout" class="btn">Comprar agora&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></a>
+                        <?php if (isset($_SESSION['autenticado']) || $_SESSION['autenticado']) { ?>
+                            <button onclick="ajaxCarrinho(<?= $produto_id.', false'?>)" class="btn btn2"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Adicionar ao carrinho</button>
+                        <?php } else { ?>
+                            <p>Faça login para acessar o carrinho</p>
+                        <?php }?>
+                        <button onclick="ajaxCarrinho(<?= $produto_id.', true'?>)" class="btn"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Comprar agora</button>
                     </div>
                 </div>
             </div>
@@ -64,54 +68,33 @@
         </div>
     </section>
 
-    <!-- <section class="produtos-relacionados">
-        <div class="container">
-            <h2 class="titulo3">As pessoas também compraram</h2>
-            <div class="gridProdutos">
-                <?php 
-                    $produtos = [
-                        [
-                            "foto" => "img/front/livro1.jpg",
-                            "titulo" => "Este livro não vai te deixar rico",
-                            "link" => "produto",
-                            "preco" => "R$ 34,99"
-                        ],
-                        [
-                            "foto" => "img/front/livro2.jpg",
-                            "titulo" => "Sociedade do Cansaço",
-                            "link" => "produto",
-                            "preco" => "R$ 14,99"
-                        ],
-                        [
-                            "foto" => "img/front/livro3.jpg",
-                            "titulo" => "Amores impossíveis e outras perturbações quânticas",
-                            "link" => "produto",
-                            "preco" => "R$ 34,99"
-                        ],
-                        [
-                            "foto" => "img/front/videogame1.jpg",
-                            "titulo" => "Nintendo Switch",
-                            "link" => "produto",
-                            "preco" => "R$ 1.899,99"
-                        ]
-                    ];
-
-                    foreach ($produtos as $p) {
-                        $foto = $p["foto"];
-                        $titulo = $p["titulo"];
-                        $link = $p["link"];
-                        $preco = $p["preco"];
-
-                        require('includes/elements/card-produto.php');
-                    }
-                ?>
-            </div>
-        </div>
-    </section> -->
 
 </main>
 
 <script>
+
+    function ajaxCarrinho(id, comprarAgora) {
+        $.ajax({
+            url: 'classes/Carrinho.php',
+            data: {
+                funcao: 'adicionaCarrinho',
+                produto_id: id,
+            },
+            type: 'post',
+            success: function(output) {
+                alert('Produto adicionado ao carrinho!');
+                if (comprarAgora) {
+                    window.location = "./cart"
+                } else {
+                    window.location = "./galeria"
+                }
+
+            }
+        })
+    }
+
+
+
     $(document).ready(function(){
         $('.carrossel-main').slick({
             slidesToShow: 1,
@@ -133,7 +116,6 @@
             asNavFor: '.carrossel-main',
             focusOnSelect: true
         });
-        
     })
 
 </script>
