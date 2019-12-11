@@ -47,15 +47,20 @@ function uploadImage($receivedKey)
 session_start();
 
 
-// include('model/Produto.php');
-// include('../dao/MySqlDaoFactory.php');
+include('model/Produto.php');
+include('../dao/MySqlDaoFactory.php');
 
-if(empty($_POST['descricao-produto'])) {
-	header('Location: cadastro-produtos.php');
+
+if(empty($_POST['descricao-produto'])) 
+{
+	header('Location: ../includes/pages/cadastro-produtos.php');
 	exit();
 }
 
 $descricao =$_POST['descricao-produto'];
+
+echo $descricao;
+
 $categoria =$_POST['categoria-produto'];
 $marca = $_POST['marca'];
 $preco = $_POST['preco'];
