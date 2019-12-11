@@ -3,6 +3,7 @@
 function uploadImage($receivedKey)
 {
 	$target_dir = "../img_database/";
+	
 
 	$extension = pathinfo($_FILES["fotos"]["name"][$receivedKey], PATHINFO_EXTENSION); 
 
@@ -45,8 +46,9 @@ function uploadImage($receivedKey)
 
 session_start();
 
-include('model/Produto.php');
-include('../dao/MySqlDaoFactory.php');
+
+// include('model/Produto.php');
+// include('../dao/MySqlDaoFactory.php');
 
 if(empty($_POST['descricao-produto'])) {
 	header('Location: cadastro-produtos.php');

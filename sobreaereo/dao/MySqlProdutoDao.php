@@ -27,22 +27,20 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
 
 
     public function buscaPorVendedor($vendedor_id) {
-        $produto = null;
-        $produtos = null;
-        $query = "SELECT * FROM produto WHERE vendedor_id =".$vendedor_id;
-     
-        $result = mysqli_query($this->conn, $query);
 
-        $data = mysqli_fetch_assoc($result);
-        
-        if($data) {
-            $produtos = array();
-            foreach ($data as $d) {
-                $produto = new Produto($d['id'], $d['descricao '], $d['categoria'], $d['marca'], $d['preco'], $d['vendedor'], $d['detalhes'], $d['imagens'] );
-                array_push($produtos, $produto);
+        $query = "SELECT * FROM produto WHERE vendedor_id =".$vendedor_id;
+        $result = mysqli_query($this->conn, $query);
+        $arr = null;
+
+        if ($result) {
+            $arr = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($arr, $row);
             }
-        } 
-        return $produtos;
+            mysqli_free_result($result);
+        }
+    
+        return $arr;
     }
 
     // TODO: daqui pra baixo

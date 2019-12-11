@@ -36,7 +36,7 @@ $produtos = $dao->buscaPorVendedor($_SESSION['user_ID']);
                         <th>imagem</th>
                         <th>Descrição</th>
                         <th>Categoria</th>
-                        <!-- <th>Marca</th> -->
+                        <th>Marca</th>
                         <th>Preço</th>
                         <!-- <th>Qt Estoque</th> -->
                         <th>Ações</th>
@@ -46,12 +46,13 @@ $produtos = $dao->buscaPorVendedor($_SESSION['user_ID']);
     
                         foreach($produtos as $p) { ?>
                             <tr>
-                                <td><?= $p->getId()?></td>
+                                <td><?= $p['produto_id']?></td>
+                                <td><img class="produto-table-image" src="img/front/celular1.jpg"/></td> <!-- ! TODO: trocar por imagem_main -->
+                                <td><?= $p['descricao']?></td>
+                                <td><?= $p['categoria']?></td>
+                                <td><?= $p['marca']?></td>
+                                <td><?= $p['preco']?></td>
                                 
-                                <td><img class="produto-table-image" src="img/front/celular1.jpg"/></td>
-                                <td><?= $p->getDescricao()?></td>
-                                <td><?= $p->getCategoria()?></td>
-                                <td><?= $p->getPreco()?></td>
                                 <td>
                                     <a class="btnCadastro btn btn-danger" href="lista-produtos"><i class="fas fa-trash"></i></a>
                                     <a class="btnCadastro btn btn-primary" href="cadastro-produtos"><i class="fas fa-edit"></i></a>
