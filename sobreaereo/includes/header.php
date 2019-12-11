@@ -40,8 +40,8 @@ session_start();
 					<img src="img/logo.png" alt="SobreAéreo" title="SobreAéreo" class="logo__pic">
 				</a>
 				
-				<form action="galeria" name="pesquisa-header" class="busca">
-					<input type="text" class="busca__campo" placeholder="O que você procura?" required>
+				<form action="galeria" name="pesquisa-header" class="busca" method="get">
+					<input type="text" name="searchinput" class="busca__campo" placeholder="O que você procura?" required>
 					<button type="submit" class="busca__btn" title="Buscar!"> <i class="fas fa-search"></i> </button>
 				</form>
 

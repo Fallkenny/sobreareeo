@@ -77,6 +77,22 @@ class MySqlProdutoDao extends MySQLDAO implements ProdutoDao {
         return $row;
     }
 
+    public function buscaPorNome($palavra)
+    {
+        $arr = null;
+        $query = "SELECT * FROM produto WHERE descricao like '%" .$palavra ."%'";
+
+        $result = mysqli_query($this->conn, $query);
+        if ($result) {
+            $arr = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($arr, $row);
+            }
+            mysqli_free_result($result);
+        }
+        return $arr;
+    }
+
     public function buscaTodos($limit = false) {
         $arr = null;
         $query = "SELECT * FROM produto";

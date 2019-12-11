@@ -1,119 +1,48 @@
+<?php
+
+
+$filtro = explode('?', urldecode($_SERVER['REQUEST_URI']));
+
+if (isset($filtro[1])) {
+    // pega a querystring, que esta na segunda parte do explode no ?
+    $filtro = $filtro[1];
+    
+    parse_str($filtro, $filtro);
+    $searchfield = $filtro["searchinput"]; // essa variavel tem o "teste"
+}
+else{
+    $searchfield = "";
+}
+
+    include('dao/MySqlProdutoDao.php');
+
+    $factory = new MySqlDaoFactory();
+    $dao = $factory->getProdutoDao();
+    $produtos = $dao->buscaPorNome($searchfield);
+    $count_produtos = count($produtos);
+
+?>
+
+
+
 <main id="galeria">
 
 
     <section class="topoPadrao">
         <div class="container">
-            <h1 class="titulo3">Promoção 50% off</h1>
-            <p class="numProdutos">72 produtos encontrados</p>
+            <h1 class="titulo3">Resultados p/ "<?php echo $searchfield?>"</h1>
+            <p class="numProdutos"><?php echo $count_produtos?> produto(s) encontrado(s)</p>
         </div>
     </section>
     <section class="destaques">
         <div class="container">
             <div class="gridProdutos">
                 <?php 
-                    $produtos = [
-                        [
-                            "foto" => "img/front/celular1.jpg",
-                            "titulo" => "Galaxy A50",
-                            "link" => "produto",
-                            "preco" => "R$ 1.450,99"
-                        ],
-                        [
-                            "foto" => "img/front/celular2.png",
-                            "titulo" => "iPhone X",
-                            "link" => "produto",
-                            "preco" => "R$ 4.450,99"
-                        ],
-                        [
-                            "foto" => "img/front/livro1.jpg",
-                            "titulo" => "Este livro não vai te deixar rico",
-                            "link" => "produto",
-                            "preco" => "R$ 34,99"
-                        ],
-                        [
-                            "foto" => "img/front/livro2.jpg",
-                            "titulo" => "Sociedade do Cansaço",
-                            "link" => "produto",
-                            "preco" => "R$ 14,99"
-                        ],
-                        [
-                            "foto" => "img/front/livro3.jpg",
-                            "titulo" => "Amores impossíveis e outras perturbações quânticas",
-                            "link" => "produto",
-                            "preco" => "R$ 34,99"
-                        ],
-                        [
-                            "foto" => "img/front/videogame1.jpg",
-                            "titulo" => "Nintendo Switch",
-                            "link" => "produto",
-                            "preco" => "R$ 1.899,99"
-                        ],
-                        [
-                            "foto" => "img/front/videogame2.jpg",
-                            "titulo" => "Playstation 4",
-                            "link" => "produto",
-                            "preco" => "R$ 1.799,99"
-                        ],
-                        [
-                            "foto" => "img/front/videogame3.jpg",
-                            "titulo" => "XBox One X Minecraft Edition",
-                            "link" => "produto",
-                            "preco" => "R$ 1.799,99"
-                        ],
-                        [
-                            "foto" => "img/front/celular1.jpg",
-                            "titulo" => "Galaxy A50",
-                            "link" => "produto",
-                            "preco" => "R$ 1.450,99"
-                        ],
-                        [
-                            "foto" => "img/front/celular2.png",
-                            "titulo" => "iPhone X",
-                            "link" => "produto",
-                            "preco" => "R$ 4.450,99"
-                        ],
-                        [
-                            "foto" => "img/front/livro1.jpg",
-                            "titulo" => "Este livro não vai te deixar rico",
-                            "link" => "produto",
-                            "preco" => "R$ 34,99"
-                        ],
-                        [
-                            "foto" => "img/front/livro2.jpg",
-                            "titulo" => "Sociedade do Cansaço",
-                            "link" => "produto",
-                            "preco" => "R$ 14,99"
-                        ],
-                        [
-                            "foto" => "img/front/livro3.jpg",
-                            "titulo" => "Amores impossíveis e outras perturbações quânticas",
-                            "link" => "produto",
-                            "preco" => "R$ 34,99"
-                        ],
-                        [
-                            "foto" => "img/front/videogame1.jpg",
-                            "titulo" => "Nintendo Switch",
-                            "link" => "produto",
-                            "preco" => "R$ 1.899,99"
-                        ],
-                        [
-                            "foto" => "img/front/videogame2.jpg",
-                            "titulo" => "Playstation 4",
-                            "link" => "produto",
-                            "preco" => "R$ 1.799,99"
-                        ],
-                        [
-                            "foto" => "img/front/videogame3.jpg",
-                            "titulo" => "XBox One X Minecraft Edition",
-                            "link" => "produto",
-                            "preco" => "R$ 1.799,99"
-                        ]
-                    ];
-
+                    
                     foreach ($produtos as $p) {
-                        $foto = $p["foto"];
-                        $titulo = $p["titulo"];
-                        $link = $p["link"];
+                        $foto = $p["imagem_main"];
+                        $titulo = $p["descricao"];
+                        $link = "produto/". $p["produto_id"];
                         $preco = $p["preco"];
 
                         require('includes/elements/card-produto.php');
